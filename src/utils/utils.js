@@ -45,7 +45,6 @@ export const currentDate = ( date=new Date() ) => {
 
 // function for saving documents to mongo
 export const saveDocuments = async (Model, data) => {
-  model = new mongoose.model(model.name)
   const response = await Model.insertMany(data);
   return response;
 };
