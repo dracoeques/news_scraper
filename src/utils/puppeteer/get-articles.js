@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import { readSavedDocumnets, saveDocuments, scrollToBottom } from "../utils.js";
+import { currentDate, readSavedDocumnets, saveDocuments, scrollToBottom } from "../utils.js";
+import mongoose from "mongoose";
 
 puppeteer.use(StealthPlugin());
 
@@ -17,7 +18,10 @@ export const getArticles = async (inputProps) => {
       Model,
       saveAfter = 1,
     } = inputProps;
-    const currentSaved = await readSavedDocumnets(Model, name);
+    console.log(Model, Model.modelName)
+    const model = new mongoose.model(Model.modelName + "." + currentDate(), Model.schema)
+    
+    const currentSaved = await readSavedDocumnets(model, name);
     const currentLinks = currentSaved.map((el) => el.link);
     console.log(currentLinks);
 
@@ -115,7 +119,7 @@ export const getArticles = async (inputProps) => {
           }
 
           if (pageCount >= saveAfter * saveCount) {
-            await saveDocuments(Model, pageData);
+            await saveDocuments(model, pageData);
             // deleting all saved elements
             pageData.splice(0, pageData.length);
             saveCount++;
@@ -123,14 +127,14 @@ export const getArticles = async (inputProps) => {
 
           pageCount++;
         }
-        await saveDocuments(Model, pageData);
+        await saveDocuments(model, pageData);
         pageData.splice(0, pageData.length);
       }
     }
 
     await page.close();
     await browser.close();
-    await saveDocuments(Model, pageData);
+    await saveDocuments(model, pageData);
   } catch (err) {
     console.log("An error has occured when trying to fetch the page");
     console.log(err);

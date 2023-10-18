@@ -5,9 +5,10 @@
   "type": "module",
   "main": "./src/index.js",
   "scripts": {
-    "start:dev": "nodemon ./src/index.js",
+    "start": "node ./src/scrap.js",
+    "start:dev": "node ./src/scrap.js",
     "start:test": "node ./src/index.js&&NODE_ENV=test",
-    "start:prod": "nodemon ./src/index.js"
+    "start:prod": "nodemon ./src/index.js&&NODE_ENV=production"
   },
   "keywords": [
     "scrapper",

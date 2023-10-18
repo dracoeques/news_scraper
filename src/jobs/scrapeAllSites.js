@@ -67,17 +67,19 @@ agenda.define("scrape-web3", async (job) => {
 });
 
 export default async () => {
+  console.log("scrapping")
   // await agenda.every("6 hours", "scrape-all-sites");
-  await agenda.every("6 hours", "scrape-art-and-fashion");
-  await agenda.every("6 hours", "scrape-biz-and-finance");
-  await agenda.every("6 hours", "scrape-entertainment");
-  await agenda.every("6 hours", "scrape-gaming");
-  await agenda.every("6 hours", "scrape-law-and-crime");
-  await agenda.every("6 hours", "scrape-lifestyle-and-health");
-  await agenda.every("6 hours", "scrape-politics");
-  await agenda.every("6 hours", "scrape-science-and-tech");
-  await agenda.every("6 hours", "scrape-sport");
-  await agenda.every("6 hours", "scrape-web3");
+  // await agenda.now("scrape-all-sites");
+  // await agenda.now("scrape-art-and-fashion");
+  // await agenda.now("scrape-biz-and-finance");
+  // await agenda.now("scrape-entertainment");
+  // await agenda.now("scrape-gaming");
+  // await agenda.now("scrape-law-and-crime");
+  // await agenda.now("scrape-lifestyle-and-health");
+  // await agenda.now("scrape-politics");
+  // await agenda.now("scrape-science-and-tech");
+  // await agenda.now("scrape-sport");
+  // await agenda.now("scrape-web3");
 
-  await agenda.start();
+  // await agenda.start();
 };
