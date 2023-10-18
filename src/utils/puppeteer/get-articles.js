@@ -1,9 +1,14 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import ReplPlugin from 'puppeteer-extra-plugin-repl';
 import { currentDate, readSavedDocumnets, saveDocuments, scrollToBottom } from "../utils.js";
 import mongoose from "mongoose";
 
-puppeteer.use(StealthPlugin());
+const repl = new ReplPlugin()
+const stealth = StealthPlugin()
+
+puppeteer.use(repl)
+puppeteer.use(stealth);
 
 export const getArticles = async (inputProps) => {
   try {
